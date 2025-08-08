@@ -57,16 +57,6 @@ if [ ! -f "$SCRIPT_DIR/build/DaroCMP.xcframework.zip" ]; then
   exit 1
 fi
 
-# Push the podspec to the trunk
-echo "Pushing podspec to CocoaPods trunk..."
-if pod trunk push "$PODSPEC_PATH" --allow-warnings --verbose; then
-    echo "✅ Successfully pushed to CocoaPods trunk"
-else
-    echo "❌ Failed to push to CocoaPods trunk"
-    echo "Make sure you are registered with CocoaPods trunk (pod trunk register)"
-    exit 1
-fi
-
 # Check if release already exists
 if gh release view $VERSION >/dev/null 2>&1; then
   echo "GitHub release $VERSION already exists, skipping release creation"
@@ -75,6 +65,16 @@ else
   # Note: gh release create will create and push the tag automatically
   gh release create $VERSION "$SCRIPT_DIR/build/DaroCMP.xcframework.zip" --title "Release $VERSION" --notes "Release version $VERSION"
   NEEDS_TAG=false  # gh release create already created and pushed the tag
+fi
+
+# Push the podspec to the trunk
+echo "Pushing podspec to CocoaPods trunk..."
+if pod trunk push "$PODSPEC_PATH" --allow-warnings --verbose; then
+    echo "✅ Successfully pushed to CocoaPods trunk"
+else
+    echo "❌ Failed to push to CocoaPods trunk"
+    echo "Make sure you are registered with CocoaPods trunk (pod trunk register)"
+    exit 1
 fi
 
 # Now commit and push everything if needed
