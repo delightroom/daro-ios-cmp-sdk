@@ -17,7 +17,7 @@ if [[ ! $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9]+)?$ ]]; then
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PODSPEC_PATH="$SCRIPT_DIR/DaroCMP.podspec"
+PODSPEC_PATH="$SCRIPT_DIR/DaroCMPSDK.podspec"
 
 # 현재 브랜치 감지 (정보 표시용)
 CURRENT_BRANCH=$(git branch --show-current)
