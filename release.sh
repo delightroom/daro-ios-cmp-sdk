@@ -51,9 +51,9 @@ else
   NEEDS_TAG=true
 fi
 
-# Check if DaroCMP.xcframework.zip exists
-if [ ! -f "$SCRIPT_DIR/build/DaroCMP.xcframework.zip" ]; then
-  echo "$SCRIPT_DIR/build/DaroCMP.xcframework.zip file not found"
+# Check if DaroCMPSDK.xcframework.zip exists
+if [ ! -f "$SCRIPT_DIR/build/DaroCMPSDK.xcframework.zip" ]; then
+  echo "$SCRIPT_DIR/build/DaroCMPSDK.xcframework.zip file not found"
   exit 1
 fi
 
@@ -63,7 +63,7 @@ if gh release view $VERSION >/dev/null 2>&1; then
 else
   # Create a tag and release using GitHub CLI with the file
   # Note: gh release create will create and push the tag automatically
-  gh release create $VERSION "$SCRIPT_DIR/build/DaroCMP.xcframework.zip" --title "Release $VERSION" --notes "Release version $VERSION"
+  gh release create $VERSION "$SCRIPT_DIR/build/DaroCMPSDK.xcframework.zip" --title "Release $VERSION" --notes "Release version $VERSION"
   NEEDS_TAG=false  # gh release create already created and pushed the tag
 fi
 
