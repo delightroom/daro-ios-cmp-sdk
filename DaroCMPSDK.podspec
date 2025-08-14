@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'DaroCMPSDK'
-  spec.version = '0.0.3'
+  spec.version = '0.0.4'
   spec.summary      = 'DaroCMPSDK - Consent Management Platform SDK for iOS'
   spec.description  = <<-DESC
     DaroCMPSDK - Consent Management Platform SDK for iOS
